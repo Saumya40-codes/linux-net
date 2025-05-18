@@ -8,4 +8,4 @@ A very simple implementation using linux namespaces to show how ip packet forwar
 
 ## Usage
 
-You can simply run the bash script existing in project's root : `start.sh` and later cleanup all the resources created with `clean.sh`
+You can simply run the bash script existing in project's root : `start.sh` and later cleanup all the resources created with `clean.sh` **OR** just use `make start`
