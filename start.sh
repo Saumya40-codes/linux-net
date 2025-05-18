@@ -2,9 +2,17 @@
 
 set -e
 
-# manipulate the kernel variables
-echo "Enabling IP forwarding..."
-sudo sysctl -w net.ipv4.ip_forward=1
+is_ipv4_forwarding_on=$(cat /proc/sys/net/ipv4/ip_forward)
+
+if [[ "$is_ipv4_forwarding_on" == "1" ]]; then
+  echo "IP forwarding is on by default 👀"
+  export ip_on_by_def=1
+else
+  # manipulate the kernel variables
+  echo "Enabling IP forwarding..."
+  export ip_on_by_def=0
+  sudo sysctl -w net.ipv4.ip_forward=1
+fi
 
 # creating new network namespaces
 echo "Creating network namespaces"
